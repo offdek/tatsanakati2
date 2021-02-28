@@ -1,5 +1,5 @@
 html {
-  font-family: "Prompt", sans-serif;
+  font-family: "Poppins", "Prompt", sans-serif;
   padding: 0;
   margin: 0;
   height: 100%;
@@ -21,17 +21,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-}
-.main-content h1 {
-  margin: 0;
-  font-weight: 300;
-  font-size: 114px;
-}
-.main-content p {
-  height: 46px;
-  margin: 0;
-  font-weight: 300;
-  font-size: 60px;
+  margin: 0 51px;
 }
 
 .footer-content {
@@ -46,12 +36,6 @@ body {
 
 .footer-content .footer-left {
   text-align: center;
-}
-.footer-content .footer-left h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
-  height: 14px;
 }
 .footer-content .footer-left p {
   margin: 0;
@@ -97,17 +81,6 @@ body {
     background: url("../img/main_bg.png") no-repeat top left;
     background-size: cover;
   }
-  .main-content h1 {
-    margin: 0;
-    font-weight: 300;
-    font-size: 100px;
-  }
-  .main-content p {
-    height: 38px;
-    margin: 0;
-    font-weight: 300;
-    font-size: 48px;
-  }
 }
 @media only screen and (max-width: 767px) {
   body {
@@ -116,17 +89,6 @@ body {
   }
   .main-content {
     height: 80vh;
-  }
-  .main-content h1 {
-    margin: 0;
-    font-weight: 300;
-    font-size: 48px;
-  }
-  .main-content p {
-    height: 38px;
-    margin: 0;
-    font-weight: 300;
-    font-size: 24px;
   }
   .footer-content {
     display: flex;
