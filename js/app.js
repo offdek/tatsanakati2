@@ -14,7 +14,6 @@ body.addEventListener("mousemove", (e) => {
   let xAxis = (window.innerWidth / 2 - e.pageX) / 270;
   smoke.style.transform = `translate(${xAxis * speedSmoke}px)`;
   sunSplash.style.transform = `rotate(${xAxis}deg)`;
-  console.log(xAxis);
   if (xAxis < 0) {
     sunSplash.style.top = `${xAxis * rotateSunSplashRate}px`;
   } else {
