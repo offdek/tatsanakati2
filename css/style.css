@@ -55,6 +55,7 @@ body {
 /* zone bg */
 
 .smoke {
+  pointer-events: none;
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -71,8 +72,11 @@ body {
   background: rgba(11, 50, 103, 0.27);
 }
 .sun-splash {
+  pointer-events: none;
   position: absolute;
+  left: 0;
   width: 100%;
+  white-space: nowrap;
   height: 100vh;
   background: url("../img/sun_splash.png") no-repeat top center;
 }
@@ -80,6 +84,15 @@ body {
   body {
     background: url("../img/main_bg.png") no-repeat top left;
     background-size: cover;
+  }
+  .sun-splash {
+    left: -10%;
+    width: 120%;
+  }
+  .smoke img {
+    width: 100%;
+    height: 100%;
+    transform: scale(2);
   }
 }
 @media only screen and (max-width: 767px) {
