@@ -1,11 +1,11 @@
 //Movement Animation
-var body = document.querySelector("body");
-var smoke = document.querySelector(".smoke");
-var sunSplash = document.querySelector(".sun-splash");
+const body = document.querySelector("body");
+const smoke = document.querySelector(".smoke");
+const sunSplash = document.querySelector(".sun-splash");
 
 // desktop
-var speedSmoke = 15;
-var rotateSunSplashRate = 7;
+const speedSmoke = 15;
+const rotateSunSplashRate = 7;
 
 body.addEventListener("mousemove", (e) => {
   let xAxis = (window.innerWidth / 2 - e.pageX) / 270;
@@ -13,13 +13,31 @@ body.addEventListener("mousemove", (e) => {
   sunSplash.style.transform = `translateX(${xAxis * -rotateSunSplashRate}px)`;
 });
 // mobile;
-var waitRollingRate = 10;
+const waitRollingRate = 10;
 
-window.addEventListener("load", () => {
-  if (window.DeviceOrientationEvent) {
-    window.addEventListener("deviceorientation", (e) => {
-      smoke.style.transform = `translate(${e.alpha}px)`;
-      sunSplash.style.transform = `translateX(${e.alpha / waitRollingRate}px)`;
-    });
-  }
-});
+if (
+  typeof DeviceMotionEvent !== "undefined" &&
+  typeof DeviceMotionEvent.requestPermission === "function"
+) {
+  // alert("iOS 13+");
+  requestOrientationPermission();
+} else {
+  // alert("no 13+");
+  window.addEventListener("deviceorientation", (e) => {
+    smoke.style.transform = `translate(${e.alpha}px)`;
+    sunSplash.style.transform = `translateX(${e.alpha / waitRollingRate}px)`;
+  });
+}
+
+function requestOrientationPermission() {
+  DeviceMotionEvent.requestPermission()
+    .then((response) => {
+      if (response == "granted") {
+        smoke.style.transform = `translate(${e.alpha}px)`;
+        sunSplash.style.transform = `translateX(${
+          e.alpha / waitRollingRate
+        }px)`;
+      }
+    })
+    .catch(console.error);
+}
