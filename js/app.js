@@ -15,29 +15,37 @@ body.addEventListener("mousemove", (e) => {
 // mobile;
 const waitRollingRate = 10;
 
-if (
-  typeof DeviceMotionEvent !== "undefined" &&
-  typeof DeviceMotionEvent.requestPermission === "function"
-) {
-  // alert("iOS 13+");
-  requestOrientationPermission();
-} else {
-  // alert("no 13+");
+const MobileOrientation = () => {
   window.addEventListener("deviceorientation", (e) => {
     smoke.style.transform = `translate(${e.alpha}px)`;
     sunSplash.style.transform = `translateX(${e.alpha / waitRollingRate}px)`;
   });
-}
+};
+
+window.onload = () => {
+  if (
+    window.DeviceMotionEvent &&
+    typeof window.DeviceMotionEvent.requestPermission === "function"
+  ) {
+    requestOrientationPermission();
+  } else {
+    MobileOrientation();
+  }
+};
 
 function requestOrientationPermission() {
-  DeviceMotionEvent.requestPermission()
-    .then((response) => {
-      if (response == "granted") {
-        smoke.style.transform = `translate(${e.alpha}px)`;
-        sunSplash.style.transform = `translateX(${
-          e.alpha / waitRollingRate
-        }px)`;
-      }
-    })
-    .catch(console.error);
+  if (
+    DeviceOrientationEvent &&
+    typeof DeviceOrientationEvent.requestPermission === "function"
+  ) {
+    DeviceOrientationEvent.requestPermission()
+      .then((permissionState) => {
+        if (permissionState === "granted") {
+          MobileOrientation();
+        }
+      })
+      .catch(console.error);
+  } else {
+    // handle regular non iOS 13+ devices
+  }
 }
