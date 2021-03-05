@@ -14,9 +14,9 @@ body.addEventListener("mousemove", (e) => {
 });
 // mobile;
 const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-let px = 45; // Position x and y
+let px = 0; // Position x and y
 let vx = 0; // Velocity x and y
-const updateRate = 1 / 32;
+const updateRate = 1 / 20;
 // Windows Phone must come first because its UA also contains "Android"
 if (/windows phone/i.test(userAgent)) {
   alert("Windows Phone not Subport Motion");
@@ -46,10 +46,10 @@ function Orientation() {
   window.addEventListener("deviceorientation", (e) => {
     const leftToRight = e.gamma;
     vx = vx + leftToRight * updateRate;
-    px = px + vx * 0.5;
+    px = px + vx / 4;
     console.log(px);
-    if (px > 98 || px < 0) {
-      px = Math.max(0, Math.min(98, px));
+    if (px > 100 || px < -100) {
+      px = Math.max(-100, Math.min(100, px));
       vx = 0;
     }
     smoke.style.transform = `translateX(${px / 1.5}px)`;
