@@ -82,6 +82,7 @@ body {
   background: url("../img/sun_splash.png") no-repeat top center;
 }
 .btn {
+  margin: 0 auto;
   width: 150px;
   border-radius: 4px;
   border: 0;
