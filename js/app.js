@@ -32,6 +32,8 @@ if (/iPad|iPhone|iPod/.test(isMobile) && !window.MSStream) {
       if (response == "granted") {
         btn.style.display = "none";
         Motion();
+      } else {
+        btn.style.display = "none";
       }
     });
   }
