@@ -17,41 +17,30 @@ if (isMobile == null) {
 }
 
 // mobile;
-let px = 0; // Position x and y
-let vx = 0; // Velocity x and y
-
-const updateRate = 1 / 45; // หน่วงการเคลื่อนที่
-
-Orientation();
+// Android Function
+console.log("isMobile", isMobile);
 if (/android/i.test(isMobile)) {
   btn.style.display = "none";
-  Orientation();
+  Motion();
 }
+
+// IOS Function
 if (/iPad|iPhone|iPod/.test(isMobile) && !window.MSStream) {
   btn.style.display = "block";
-  // IOS Function
   function getAccel() {
     DeviceMotionEvent.requestPermission().then((response) => {
       if (response == "granted") {
         btn.style.display = "none";
-        Orientation();
+        Motion();
       }
     });
   }
 }
 
-function Orientation() {
-  window.addEventListener("deviceorientation", (e) => {
-    const leftToRight = e.gamma;
-    vx = vx + leftToRight * updateRate;
-    console.log(vx);
-    px = px + vx / 4;
-    if (px > 120 || px < -120) {
-      px = Math.max(-120, Math.min(120, px));
-      console.log(px);
-      vx = 0;
-    }
-    smoke.style.transform = `translateX(${px / 1.5}px)`;
-    sunSplash.style.transform = `translateX(${px / 3}px)`;
+function Motion() {
+  window.addEventListener("devicemotion", (e) => {
+    const leftToRight = e.accelerationIncludingGravity.x;
+    smoke.style.transform = `translateX(${leftToRight * 20 - 90}px)`;
+    sunSplash.style.transform = `translateX(${leftToRight * 4}px)`;
   });
 }
